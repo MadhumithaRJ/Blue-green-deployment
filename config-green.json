@@ -1,0 +1,5 @@
+{
+  "database_url": "green-db.c5gywkogwl9q.us-east-1.rds.amazonaws.com",
+  "api_url": "https://7c32hvpfqh.execute-api.us-east-1.amazonaws.com/green",
+  "feature_flag": true
+}
