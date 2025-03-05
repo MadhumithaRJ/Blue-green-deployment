@@ -1,36 +1,22 @@
 version: 0.2
-runtime-versions:
-  nodejs: 14
-  python: 3.8
-
 
 phases:
   install:
-    runtime-versions:
-      # Define any runtime versions you might need, like Node.js, Python, etc.
-      # Here we do not need any specific runtime since it's a simple static site.
     commands:
-      - echo "Installing dependencies (if any)..."
-
-  pre_build:
-    commands:
-      - echo "No pre-build steps required."
+      - echo "Installing dependencies..."
 
   build:
     commands:
-      - echo "Building the web app..."
-      - mkdir -p build
-      - cp -r * build/
-      # This assumes that the 'index.html' file is in the root of your repository.
-      # The 'build' directory will contain the web app's files for deployment.
+      - echo '<html>' > index.html
+      - echo '<body style="background-color: blue; color: white;">' >> index.html
+      - echo '<h1>Blue Version</h1>' >> index.html
+      - echo '</body>' >> index.html
+      - echo '</html>' >> index.html
 
   post_build:
     commands:
-      - echo "Build completed successfully."
-      - echo "The app is ready for deployment."
+      - echo "Build complete, HTML file generated: index.html"
 
 artifacts:
   files:
-    - build/**  # Include everything inside the 'build' directory
-  base-directory: build  # Define 'build' directory as the base directory to get all files for deployment
-  discard-paths: yes  # Optionally discard the folder structure for simpler deployment
+    - index.html
