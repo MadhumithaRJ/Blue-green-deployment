@@ -1,4 +1,8 @@
 version: 0.2
+runtime-versions:
+  nodejs: 14
+  python: 3.8
+
 
 phases:
   install:
