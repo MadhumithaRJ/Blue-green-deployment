@@ -1,0 +1,5 @@
+{
+  "environment": "green",
+  "database_url": "db-blue.example.com",
+  "api_url": "api-blue.example.com"
+}
