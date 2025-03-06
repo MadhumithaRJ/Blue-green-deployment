@@ -1,28 +1,19 @@
 version: 0.0
 os: linux
 files:
-  - source: config/config-blue.json
-    destination: /webapps/config/
-  - source: config/config-green.json
-    destination: /webapps/config/
-  - source: src/server.js
-    destination: /webapps/src/
-  - source: src/package.json
-    destination: /webapps/src/
+  - source: /
+    destination: /home/ec2-user/my-app
+
 hooks:
   BeforeInstall:
-    - location: Scripts/StopApplication.sh
+    - location: scripts/before_install.sh
       timeout: 300
-      runas: root
   AfterInstall:
-    - location: Scripts/InstallDependencies.sh
-      timeout: 600
-      runas: root
+    - location: scripts/after_install.sh
+      timeout: 300
   ApplicationStart:
-    - location: Scripts/StartApplication.sh
-      timeout: 3600
-      runas: root
+    - location: scripts/application_start.sh
+      timeout: 300
   ValidateService:
-    - location: Scripts/HealthCheck.sh
-      timeout: 600
-      runas: root
+    - location: scripts/validate_service.sh
+      timeout: 300
