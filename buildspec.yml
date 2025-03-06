@@ -1,13 +1,12 @@
 version: 0.2
 phases:
-  install:
-    runtime-versions:
-      nodejs: 14
   build:
     commands:
-      - echo "Building application..."
-      - npm install
-      - npm run build
+      - echo "Building the Docker image"
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125332757.dkr.ecr.us-east-1.amazonaws.com
+      - docker build -t bluegreendeployment .
+      - docker tag bluegreendeployment:latest 211125332757.dkr.ecr.us-east-1.amazonaws.com/bluegreendeployment:latest
+      - docker push 211125332757.dkr.ecr.us-east-1.amazonaws.com/bluegreendeployment:latest
 artifacts:
   files:
-    - '*/'
+    - '**/*'
