@@ -1,5 +1,5 @@
 {
   "environment": "green",
-  "database_url": "db-blue.example.com",
+  "database_url": "mysql://admin:Maya$2021@database-1.c5gywkogwl9q.us-east-1.rds.amazonaws.com:3306/database-1",
   "api_url": "api-blue.example.com"
 }
