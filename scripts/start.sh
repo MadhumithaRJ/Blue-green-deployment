@@ -1,13 +1,9 @@
+
 #!/bin/bash
-cd /home/ec2-user/blue-green-app
 
-# Stop existing application
-pm2 stop app || true
+echo "Running start_app.sh"
 
-# Install dependencies
-npm install
-
-# Start the application
-pm2 start app.js --name blue-green-app
+# Start the application (assuming PM2 is being used for process management)
+cd /var/www/html
+pm2 start app.js --name "my-app"  # Replace "app.js" with the entry file of your app
 pm2 save
-pm2 restart all
