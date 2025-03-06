@@ -1,23 +1,28 @@
 version: 0.0
 os: linux
 files:
-  - source: /              # Source directory in your GitHub repository
-    destination: /var/www/html  # Destination directory on the EC2 instance
-
+  - source: config/config-blue.json
+    destination: /webapps/config/
+  - source: config/config-green.json
+    destination: /webapps/config/
+  - source: src/server.js
+    destination: /webapps/src/
+  - source: src/package.json
+    destination: /webapps/src/
 hooks:
   BeforeInstall:
-    - location: scripts/before_install.sh
+    - location: Scripts/StopApplication.sh
       timeout: 300
       runas: root
   AfterInstall:
-    - location: scripts/after_install.sh
-      timeout: 300
+    - location: Scripts/InstallDependencies.sh
+      timeout: 600
       runas: root
   ApplicationStart:
-    - location: scripts/start_app.sh
-      timeout: 300
+    - location: Scripts/StartApplication.sh
+      timeout: 3600
       runas: root
-  ApplicationStop:
-    - location: scripts/stop_app.sh
-      timeout: 300
+  ValidateService:
+    - location: Scripts/HealthCheck.sh
+      timeout: 600
       runas: root
