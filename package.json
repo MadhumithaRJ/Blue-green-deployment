@@ -1,12 +1,15 @@
 {
-  "name": "blue-green-app",
+  "name": "my-app",
   "version": "1.0.0",
-  "description": "A simple Node.js app for Blue-Green Deployment",
+  "description": "Sample Node.js App for Blue-Green Deployment",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "express": "^4.17.1",
+    "pm2": "^5.1.0"
+  },
+  "author": "",
+  "license": "ISC"
 }
