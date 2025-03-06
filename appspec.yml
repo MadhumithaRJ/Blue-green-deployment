@@ -1,11 +1,23 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /home/ec2-user/blue-green-app
+  - source: /              # Source directory in your GitHub repository
+    destination: /var/www/html  # Destination directory on the EC2 instance
 
 hooks:
-  ApplicationStart:
-    - location: scripts/start.sh
+  BeforeInstall:
+    - location: scripts/before_install.sh
       timeout: 300
-      runas: ec2-user
+      runas: root
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_app.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_app.sh
+      timeout: 300
+      runas: root
